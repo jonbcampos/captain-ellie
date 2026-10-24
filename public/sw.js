@@ -11,9 +11,8 @@
  *    Safe because Vite content-hashes asset filenames — a changed file is a
  *    different URL, so a stale entry can never be the *wrong* content.
  *
- * Offline works from the second launch onward: the first visit populates the
- * cache. Since installing to the home screen requires visiting first, by the
- * time the icon exists the game is already fully cached.
+ * Offline works after one visit: installing caches every picture and sound
+ * up front (see everyAsset), so the game plays with no signal from then on.
  */
 
 /**
@@ -23,11 +22,38 @@
  * the version is the only lever that reaches a phone with the game already on
  * its home screen. Bump it after anything that could have been cached wrong.
  */
-const VERSION = 'v2';
+const VERSION = 'v3';
 const CACHE = `captain-ellie-${VERSION}`;
 
 // The shell has stable, known names, so it can be cached up front.
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png'];
+
+/**
+ * Every painted picture and recorded sound, read from the two indexes.
+ *
+ * Fetched up front on install, as in Trick or Treat, so one visit at home on
+ * wifi is enough for the whole game to work with no signal. Before this, art
+ * and sound were cached only as the game fetched them, from the second launch
+ * on (the first launch's fetches happen before the worker is in charge).
+ */
+async function everyAsset() {
+  const urls = [];
+  try {
+    const sprites = await (await fetch('./sprites/index.json', { cache: 'no-cache' })).json();
+    const ext = sprites.ext ?? 'jpg';
+    urls.push('./sprites/index.json', ...(sprites.generated ?? []).map((id) => `./sprites/${id}.${ext}`));
+  } catch {
+    // No art yet: the game draws its fallbacks.
+  }
+  try {
+    const sounds = await (await fetch('./sounds/index.json', { cache: 'no-cache' })).json();
+    const ext = sounds.ext ?? 'm4a';
+    urls.push('./sounds/index.json', ...[...(sounds.voices ?? []), ...(sounds.music ?? [])].map((id) => `./sounds/${id}.${ext}`));
+  } catch {
+    // No sound yet: synthesised effects only.
+  }
+  return urls;
+}
 
 // Installing fetches with `cache: 'reload'`, past the browser's own HTTP cache:
 // GitHub Pages lets a file sit there for ten minutes, so a new version
@@ -39,7 +65,10 @@ self.addEventListener('install', (event) => {
     caches
       .open(CACHE)
       // Individually, so one failed entry doesn't abort the whole install.
-      .then((cache) => Promise.allSettled(SHELL.map((url) => cache.add(new Request(url, { cache: 'reload' })))))
+      .then(async (cache) => {
+        const urls = [...SHELL, ...(await everyAsset())];
+        await Promise.allSettled(urls.map((url) => cache.add(new Request(url, { cache: 'reload' }))));
+      })
       .then(() => self.skipWaiting()),
   );
 });
