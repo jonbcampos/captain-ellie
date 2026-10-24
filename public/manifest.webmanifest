@@ -1,0 +1,19 @@
+{
+  "name": "Captain Ellie",
+  "short_name": "Captain Ellie",
+  "description": "Captain Ellie flies her rocket through space to chase off the cheeky Space Raccoons.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone", "minimal-ui"],
+  "orientation": "landscape",
+  "background_color": "#0d1640",
+  "theme_color": "#0d1640",
+  "categories": ["games"],
+  "icons": [
+    { "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

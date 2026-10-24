@@ -1,0 +1,134 @@
+{
+  "generated": [
+    "ellie.motion",
+    "saucer.motion",
+    "zipper.motion",
+    "tooter.motion",
+    "pilot.motion",
+    "boss.1",
+    "boss.2",
+    "boss.3",
+    "boss.4",
+    "boss.6",
+    "boss.7",
+    "boss.8",
+    "boss.9",
+    "boss.10",
+    "boss.5",
+    "asteroid",
+    "blackhole",
+    "megacomet",
+    "powerup.motion",
+    "boom.motion",
+    "fart.motion",
+    "space.1",
+    "space.2",
+    "space.3",
+    "space.4",
+    "space.5",
+    "space.6",
+    "space.7",
+    "space.8",
+    "space.9",
+    "space.10",
+    "title"
+  ],
+  "ext": "jpg",
+  "opaque": [
+    "space.1",
+    "space.2",
+    "space.3",
+    "space.4",
+    "space.5",
+    "space.6",
+    "space.7",
+    "space.8",
+    "space.9",
+    "space.10",
+    "title"
+  ],
+  "additive": [
+    "boom.motion"
+  ],
+  "sheets": {
+    "ellie.motion": {
+      "cols": 4,
+      "rows": 3,
+      "align": "center",
+      "rowIds": [
+        "fly",
+        "mood",
+        "skip"
+      ]
+    },
+    "saucer.motion": {
+      "cols": 4,
+      "rows": 2,
+      "align": "center",
+      "mirrorRows": [
+        0,
+        1
+      ],
+      "rowIds": [
+        "fly",
+        "tease"
+      ]
+    },
+    "zipper.motion": {
+      "cols": 2,
+      "rows": 2,
+      "align": "center",
+      "mirrored": true,
+      "rowIds": [
+        "fly",
+        "fly"
+      ]
+    },
+    "tooter.motion": {
+      "cols": 2,
+      "rows": 2,
+      "align": "center",
+      "mirrored": true,
+      "rowIds": [
+        "fly",
+        "fly"
+      ]
+    },
+    "pilot.motion": {
+      "cols": 4,
+      "rows": 2,
+      "align": "center",
+      "rowIds": [
+        "float",
+        "float"
+      ]
+    },
+    "powerup.motion": {
+      "cols": 2,
+      "rows": 2,
+      "align": "center",
+      "rowIds": [
+        "items",
+        "items"
+      ]
+    },
+    "boom.motion": {
+      "cols": 4,
+      "rows": 2,
+      "align": "center",
+      "rowIds": [
+        "fx",
+        "fx"
+      ]
+    },
+    "fart.motion": {
+      "cols": 4,
+      "rows": 2,
+      "align": "center",
+      "rowIds": [
+        "clouds",
+        "clouds"
+      ]
+    }
+  }
+}

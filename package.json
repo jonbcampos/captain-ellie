@@ -1,0 +1,19 @@
+{
+  "name": "captain-ellie",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host",
+    "art": "node scripts/generate-art.mjs",
+    "art:shrink": "node scripts/shrink-art.mjs",
+    "icons": "node scripts/make-icons.mjs",
+    "sound": "node scripts/generate-sound.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
+  }
+}
