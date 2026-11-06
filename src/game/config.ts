@@ -305,7 +305,15 @@ export const BOSS = {
    * have to dodge one attack". A boss now has three phases (above 2/3 health,
    * above 1/3, the rest). Each is faster to attack and bobs faster.
    */
-  phaseSpeed: [1, 0.86, 0.78] as readonly number[],
+  phaseSpeed: [1, 0.9, 0.84] as readonly number[],
+  /**
+   * Dialled back 2026-11-06: "she likes the games but the bosses have gotten a
+   * bit too hard". Every boss's health is scaled by this (shorter fights, fewer
+   * attacks to dodge) and the gap between attacks stretched by `attackGap`.
+   * Last-phase speed eased too (phaseSpeed was [1, 0.86, 0.78]).
+   */
+  hpScale: 0.75,
+  attackGap: 1.15,
   phaseBob: [1, 1.4, 1.8] as readonly number[],
   /** The charge: shake in place, lunge along her row, glide back. Seconds. */
   /** 0.85 at first; the bot (and Jonathan) were caught too often on narrow screens. */

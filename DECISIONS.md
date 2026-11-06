@@ -247,3 +247,13 @@ The simulation still steps 120 times a second, but `core/loop.ts` now draws a pi
 the game needed. Measured on a laptop, a frame of this game costs well under a millisecond to
 draw, so the rate was the waste, not the drawing. The same loop file is shared by every game in
 the set; a dev-only `__loop.render(alpha)` lets the console time one frame directly.
+
+## 16. Easier bosses (2026-11-06)
+
+"She likes the games but the bosses have gotten a bit too hard. Can we dial it back a little bit."
+Two knobs in `BOSS`, applied to every boss: `hpScale` 0.75 (a quarter less health, so shorter
+fights and fewer attacks to get through) and `attackGap` 1.15 (15% more breathing room between
+attacks). The angrier phases also speed up less (`phaseSpeed` [1, 0.9, 0.84], was 0.86, 0.78).
+Hazards, waves and HELP are unchanged. feelMany(), before -> after: boss fights 47-107 s -> 37-71 s;
+world 2 average losses 0.7-1.5 -> 0.5-0.8; every bot run now clears (was 4 of 60 failing).
+To make bosses harder again, raise `hpScale` toward 1 first.

@@ -734,7 +734,7 @@ export class GameState {
     boss.phase = 'enter';
     boss.x = SCREEN.w + BOSS.w * 0.6;
     boss.y = bandY(0.5);
-    boss.hp = boss.maxHp = spec.hp;
+    boss.hp = boss.maxHp = Math.round(spec.hp * BOSS.hpScale);
     boss.t = 0;
     boss.clock = 2.5;
     boss.attack = 0;
@@ -811,7 +811,7 @@ export class GameState {
       boss.x = parkX + Math.sin(boss.t * 0.5) * 12;
       boss.clock -= dt;
       if (boss.clock <= 0) {
-        boss.clock = spec.every * BOSS.phaseSpeed[rage]!;
+        boss.clock = spec.every * BOSS.attackGap * BOSS.phaseSpeed[rage]!;
         const attacks = spec.phases[rage]!;
         this.bossAttack(attacks[boss.attack++ % attacks.length]!);
       }

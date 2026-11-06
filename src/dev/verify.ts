@@ -266,7 +266,8 @@ export function verify(): Result[] {
     // adding hearts every time. `__game.feelMany()` gives the averages.
     const allowed = Number(row.stage) <= 5 ? 1 : 3;
     add(`stage ${row.stage}: a dodging ship wins`, row.result === 'cleared' && Number(row.losses) <= allowed, `${row.result}, ${row.hits} hits, ${row.losses} losses (allowed ${allowed})`);
-    add(`stage ${row.stage}: the boss fight is a fight`, fight >= 30 && fight <= 120 && attacks >= 15, `${fight}s, ${attacks} attacks`);
+    // Floor was 15 attacks; bosses were eased 2026-11-06 and the first one now throws ~14.
+    add(`stage ${row.stage}: the boss fight is a fight`, fight >= 30 && fight <= 120 && attacks >= 12, `${fight}s, ${attacks} attacks`);
   }
   {
     const s = new GameState();
